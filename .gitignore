@@ -1,0 +1,27 @@
+### Java / Maven
+target/
+*.log
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+
+### Node / Vite
+node_modules/
+dist/
+*.local
+
+### OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+### Env
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
