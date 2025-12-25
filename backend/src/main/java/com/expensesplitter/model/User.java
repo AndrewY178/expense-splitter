@@ -60,9 +60,6 @@ public class User {
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private Set<Group> createdGroups = new HashSet<>();
     
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<GroupMember> groupMemberships = new HashSet<>();
-    
     @OneToMany(mappedBy = "paidBy", cascade = CascadeType.ALL)
     private Set<Expense> paidExpenses = new HashSet<>();
     
