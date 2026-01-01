@@ -15,12 +15,10 @@ import java.util.HashSet;
 
 
 @Entity
-
+@Table(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Builder
 
 public class User {
