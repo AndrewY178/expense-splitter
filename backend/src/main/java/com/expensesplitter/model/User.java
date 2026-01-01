@@ -55,12 +55,15 @@ public class User {
 
 
     //Relationships
+    @Builder.Default // <--- ADD THIS
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
     private Set<Group> createdGroups = new HashSet<>();
     
+    @Builder.Default // <--- ADD THIS
     @OneToMany(mappedBy = "paidBy", cascade = CascadeType.ALL)
     private Set<Expense> paidExpenses = new HashSet<>();
     
+    @Builder.Default // <--- ADD THIS
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<ExpenseSplit> expenseSplits = new HashSet<>();
 
