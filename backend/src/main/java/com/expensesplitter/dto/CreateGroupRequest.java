@@ -14,7 +14,7 @@ import java.util.List;
 public class CreateGroupRequest {
     @NotBlank(message = "Group name is required")
     private String name;
-
+    
     private String description;
 
     @NotNull(message = "Member IDs are required")

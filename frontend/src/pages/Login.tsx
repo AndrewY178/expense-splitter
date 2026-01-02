@@ -17,11 +17,13 @@ const Login = () => {
             const response = await api.post('/auth/login', {email, password});
 
             // Save the token to localStorage
-            const {accessToken} = response.data;
-            localStorage.setItem('token', accessToken);
+
+            //these tokens are so hard to work with
+            //have to spell them correctly
+            const {token} = response.data;
+            localStorage.setItem('token', token);
 
             //Redirect to dashboard
-            alert('Login successful!'); //remove later
             navigate('/dashboard');
         }
         catch (err : any) {
