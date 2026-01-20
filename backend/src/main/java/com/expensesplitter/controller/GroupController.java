@@ -58,5 +58,11 @@ public class GroupController {
         GroupDTO group = groupService.removeMember(id, userId, currentUser);
         return ResponseEntity.ok(group);
     }
-}
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGroup(@PathVariable Long id) {
+        // You will need to add this method to your Service first!
+        groupService.deleteGroup(id); 
+        return ResponseEntity.noContent().build();
+    }
+}

@@ -26,19 +26,10 @@ public class GroupService {
     public GroupDTO createGroup(CreateGroupRequest request, User creator) {
         Group group = new Group();
         group.setName(request.getName());
-        group.setDescription(request.getDescription());
         group.setCreatedBy(creator);
 
         Set<User> members = new HashSet<>();
         members.add(creator); // Creator is automatically a member
-
-        if (request.getMemberIds() != null) {
-            for (Long memberId : request.getMemberIds()) {
-                User member = userRepository.findById(memberId)
-                        .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + memberId));
-                members.add(member);
-            }
-        }
 
         group.setMembers(members);
         group = groupRepository.save(group);
@@ -118,6 +109,13 @@ public class GroupService {
         dto.setCreatedAt(group.getCreatedAt());
         dto.setUpdatedAt(group.getUpdatedAt());
         return dto;
+    }
+
+    public void deleteGroup(Long groupId) {
+        if (!groupRepository.existsById(groupId)) {
+            throw new IllegalArgumentException("Group not found");
+        }
+        groupRepository.deleteById(groupId);
     }
 }
 
