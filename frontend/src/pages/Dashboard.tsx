@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { a } from "vitest/dist/chunks/suite.B2jumIFP.js";
 
 interface User {
     id: number;
