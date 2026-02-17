@@ -15,7 +15,13 @@ interface Group {
 }
 
 const Dashboard = () => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<User | null>(() => {
+        const id = localStorage.getItem('userId');
+        const name = localStorage.getItem('userName') || '';
+        const email = localStorage.getItem('userEmail') || '';
+        if (!id) return null;
+        return { id: Number(id), name, email };
+    });
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -28,12 +34,18 @@ const Dashboard = () => {
             try {
                 const userResponse = await api.get('/users/me');
                 setUser(userResponse.data);
+                if (userResponse.data?.id != null) localStorage.setItem('userId', String(userResponse.data.id));
+                if (userResponse.data?.name != null) localStorage.setItem('userName', String(userResponse.data.name));
+                if (userResponse.data?.email != null) localStorage.setItem('userEmail', String(userResponse.data.email));
 
                 const groupResponse = await api.get('/groups');
                 setGroups(groupResponse.data);
             } catch (error) {
                 console.error('Error loading dashboard:', error);
                 localStorage.removeItem('token');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('userName');
+                localStorage.removeItem('userEmail');
                 navigate('/login');
             } finally {
                 setLoading(false);
@@ -62,6 +74,9 @@ const Dashboard = () => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userEmail');
         navigate('/login');
     }
 

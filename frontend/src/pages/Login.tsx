@@ -20,8 +20,11 @@ const Login = () => {
 
             //these tokens are so hard to work with
             //have to spell them correctly
-            const {token} = response.data;
+            const { token, id, name, email: userEmail } = response.data;
             localStorage.setItem('token', token);
+            if (id != null) localStorage.setItem('userId', String(id));
+            if (name != null) localStorage.setItem('userName', String(name));
+            if (userEmail != null) localStorage.setItem('userEmail', String(userEmail));
 
             //Redirect to dashboard
             navigate('/dashboard');
