@@ -56,6 +56,10 @@ const Dashboard = () => {
         }
     }
 
+    const openGroup = (groupId: number) => {
+        navigate(`/groups/${groupId}`);
+    };
+
     const logout = () => {
         localStorage.removeItem('token');
         navigate('/login');
@@ -98,6 +102,7 @@ const Dashboard = () => {
                                 {groups.map(group => (
                                     <li
                                         key={group.id}
+                                        onClick={() => openGroup(group.id)}
                                         className="flex justify-between items-center p-3 bg-gray-100 rounded hover:bg-gray-200 cursor-pointer dark:bg-gray-700 dark:hover:bg-gray-600 transition"
                                     >
                                         <span className="font-medium">{group.name}</span>

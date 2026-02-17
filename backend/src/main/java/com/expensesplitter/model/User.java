@@ -46,11 +46,11 @@ public class User {
 
     //Create/Update timestamps
     @CreationTimestamp
-    @Column(name = "created at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(name = "updated at", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
 

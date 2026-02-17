@@ -36,6 +36,9 @@ public class Expense {
     private Instant createdAt;
 
     @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExpenseItem> items = new ArrayList<>();
+
+    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpenseSplit> splits = new ArrayList<>();
 }
 
